@@ -1,0 +1,65 @@
+{
+  "getNewsList": [
+    {
+      "id": 1,
+      "title": "95后男子偷550万豪车到处炫耀 刮花后开回4S店准备换一辆",
+      "url": "http://starcraft.com"
+    },
+    {
+      "id": 2,
+      "title": "男子在洞穴发现价值21万元大金块 引来500人淘金",
+      "url": "http://warcraft.com"
+    },
+    {
+      "id": 3,
+      "title": "女子自信上台秀“空中劈腿” 不料悲剧的一幕瞬间发生",
+      "url": "http://overwatch.com"
+    },
+    {
+      "id": 4,
+      "title": "作为数据分析师，用的最多的竟是Excel",
+      "url": "http://hearstone.com"
+    }
+  ],
+  "login": {
+    "username": "yudongdong",
+    "userId": 123123
+  },
+  "getPrice": {
+    "amount": 678
+  },
+  "createOrder": {
+    "orderId": "6djk979"
+  },
+  "getOrderList": {
+    "list": [
+      {
+        "orderId": "ddj123",
+        "product": "数据统计",
+        "version": "高级版",
+        "period": "1年",
+        "buyNum": 2,
+        "date": "2016-10-10",
+        "amount": "500元"
+      },
+      {
+        "orderId": "yuj583",
+        "product": "流量分析",
+        "version": "户外版",
+        "period": "3个月",
+        "buyNum": 1,
+        "date": "2016-5-2",
+        "amount": "2200元"
+      },
+      {
+        "orderId": "pmd201",
+        "product": "广告发布",
+        "version": "商铺版",
+        "period": "3年",
+        "buyNum": 12,
+        "date": "2016-8-3",
+        "amount": "7890元"
+      }
+    ]
+  }
+}
