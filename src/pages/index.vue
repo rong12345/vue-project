@@ -3,27 +3,43 @@
     <div class="index-left">
       <div class="index-left-block">
         <h2>全部产品</h2>
-        <h3>PC产品</h3>
-        <ul>
-
-        </ul>
-        <div class="hr"></div>
-        <h3>应用类</h3>
-        <ul>
-
-        </ul>
+        <template v-for="pro in productList">
+          <h3>{{ pro.title }}</h3>
+          <ul>
+            <li v-for="item in pro.list">
+              <a href="item.url">{{item.title}}</a>
+              <span v-if="item.hot" class="hot-tag">HOT</span>
+            </li>
+          </ul>
+          <div class="hr" v-if="!pro.last"></div>
+        </template>
       </div>
       <div class="index-left-block lastest-news">
-        <h2>最新消息</h2>
-        <ul>
-
-        </ul>
+        <template >
+          <h2>最新消息</h2>
+          <ul>
+            <li v-for='item in newsList'>
+              <a href="item.url">{{item.title}}</a>
+            </li>
+          </ul>
+          <!-- <div class="hr" v-if="!pro.last"></div> -->
+        </template>
       </div>
     </div>
     <div class="index-right">
       <!-- <slide-show :slides="slides" :inv="invTime"></slide-show> -->
       <div class="index-board-list">
-        
+        <div class="index-board-item" v-for="(item,index) in boardList"
+        :class="[{'line-last' : index % 2 !== 0},'index-board-' + item.id]">
+          <div class="index-board-item-inner" >
+              <h2>{{ item.title }}</h2>
+              <p>{{ item.description }}</p>
+              <div class="index-board-button">
+                <!-- <router-link></router-link> -->
+                <button type="button" name="button">立即购买</button>
+              </div>
+            </div>
+        </div>
       </div>
     </div>
   </div>
@@ -31,9 +47,112 @@
 <script type="text/javascript">
   import Vue from 'vue'
   export default{
+    created:function(){
+      this.$http.post('getList',{userId:1111})
+      .then(function (data) {
+        console.log(data);
+      },function(err){
+        console.log(err);
+      })
+    },
     data(){
       return{
-
+        boardList: [
+          {
+            title: '开放产品',
+            description: '开放产品是一款开放产品',
+            id: 'car',
+            // toKey: 'analysis',
+            saleout: false
+          },
+          {
+            title: '品牌营销',
+            description: '品牌营销帮助你的产品更好地找到定位',
+            id: 'earth',
+            // toKey: 'count',
+            saleout: false
+          },
+          {
+            title: '使命必达',
+            description: '使命必达快速迭代永远保持最前端的速度',
+            id: 'loud',
+            // toKey: 'forecast',
+            saleout: true
+          },
+          {
+            title: '勇攀高峰',
+            description: '帮你勇闯高峰，到达事业的顶峰',
+            id: 'hill',
+            // toKey: 'publish',
+            saleout: false
+          }
+        ],
+        newsList:[
+          {
+            title:'数据统计',
+            url:''
+          },
+          {
+            title:'数据预测',
+            url:''
+          },
+          {
+            title:'流量分析',
+            url:'',
+            hot:true
+          },
+          {
+            title:'广告发布',
+            url:''
+          }
+        ],
+        productList:{
+          pc:{
+            'title':'PC产品',
+            list:[
+              {
+                title:'数据统计',
+                url:''
+              },
+              {
+                title:'数据预测',
+                url:''
+              },
+              {
+                title:'流量分析',
+                url:'',
+                hot:true
+              },
+              {
+                title:'广告发布',
+                url:''
+              }
+            ]
+          },
+          app:{
+            'title':'手机应用类',
+            last:true,
+            list:[
+              {
+                title:'91助手',
+                url:''
+              },
+              {
+                title:'产品助手',
+                url:''
+              },
+              {
+                title:'智能地图',
+                url:'',
+                hot:true
+              },
+              {
+                title:'团队语音',
+                url:''
+              }
+            ]
+          }
+        }
       }
     },
     methods:{
@@ -79,6 +198,8 @@
 }
 .index-left-block ul {
   padding: 10px 15px;
+  list-style: none;
+  border-bottom: 1px #ccc solid;
 }
 .index-left-block li {
   padding: 5px;
@@ -136,5 +257,16 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+button {
+  background-color: #4fc08d;
+  border: 0;
+  color:#fff;
+  width: 100px;
+  height: 30px;
+}
+a {
+  text-decoration: none;
+  color: black;
 }
 </style>
