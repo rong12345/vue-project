@@ -1,22 +1,72 @@
 <template>
-  <div>
-    {{ msg }}
+  <div class="slide-show" @mouseover="clearInv" @mouseout="runInv">
+    <div class="slide-img">
+      <a :href="slides[nowIndex].href">
+        <img :src="slides[nowIndex].src">
+      </a>
+    </div>
+    <h2>{{ slides[nowIndex].title }}</h2>
+    <ul class="slide-pages">
+      <li @click="goto(prevIndex)">&lt;</li>
+      <li v-for="(item,index) in slides" @click="goto(index)">
+        <a :class="{on:index === nowIndex}">{{ index+1 }}</a>
+      </li>
+      <li @click="goto(nextIndex)">&gt;</li>
+    </ul>
   </div>
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-      msg:'slid'
+  props:{
+    slides:{
+      type: Array,
+      default: []
+    },
+    inv:{
+      type:Number,
+      default: 3000
     }
   },
-  computed: {
-
+  data () {
+    return {
+      nowIndex:0
+    }
   },
-  methods: {
-
+  computed:{
+    prevIndex() {
+      if(this.nowIndex === 0){
+        return this.slides.length - 1
+      }else{
+        return this.nowIndex - 1
+      }
+    },
+    nextIndex() {
+      if(this.nowIndex === this.slides.length - 1){
+        return 0
+      }else{
+        return this.nowIndex + 1
+      }
+    }
+  },
+  methods:{
+    goto(index){
+      this.nowIndex = index
+    },
+    runInv(){
+      this.invId = setInterval(() => {
+        this.goto(this.nextIndex)
+        // console.log(123);
+      }, this.inv)
+    },
+    clearInv () {
+      clearInterval(this.invId)
+    }
+  },
+  mounted(){
+    this.runInv()
   }
+
 }
 </script>
 
@@ -70,6 +120,6 @@ export default {
   color: #fff;
 }
 .slide-pages li .on {
-  text-decoration: underline;
+  color: #cc1500
 }
 </style>
