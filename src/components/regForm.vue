@@ -66,4 +66,43 @@ export default {
 .dialog-close:hover {
   color: #4fc08d;
 }
+.button {
+  background: #4fc08d;
+  color: #fff;
+  display: inline-block;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.button:hover {
+  background: #4fc08d;
+}
+.g-form {
+
+}
+.g-form-line {
+  padding: 15px 0;
+}
+.g-form-label {
+  width: 100px;
+  font-size: 16px;
+  display: inline-block;
+}
+.g-form-input {
+  display: inline-block;
+}
+.g-form-input input {
+  height: 30px;
+  width: 200px;
+  line-height: 30px;
+  vertical-align: middle;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+}
+.g-form-btn {
+  padding-left: 100px;
+}
+.g-form-error {
+  color: red;
+  padding-left: 15px;
+}
 </style>

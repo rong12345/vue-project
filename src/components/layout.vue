@@ -5,10 +5,13 @@
         <img src="../assets/logo.png" alt="">
         <div class="head-nav">
           <ul class="nav-list">
-            <li @click="logClick">登录</li>
+            <li>{{ username }}</li>
+            <li v-if="username!== ''" class="nav-pile">|</li>
+            <li v-if="username!== ''" @click="logClick">退出</li>
+            <li v-if="username=== ''" @click="logClick">登录</li>
             <li class="nav-pile">|</li>
-            <li @click="regClick">注册</li>
-            <li class="nav-pile">|</li>
+            <li v-if="username=== ''" @click="regClick">注册</li>
+            <li v-if="username=== ''" class="nav-pile">|</li>
             <li @click="aboutClick">关于</li>
           </ul>
         </div>
@@ -35,7 +38,7 @@
         和社会各界提供决策依据。 </p>
     </my-dialog>
     <my-dialog :is-show="isShowLogDialog" @on-close="closeDialog('isShowLogDialog')">
-      <log-form></log-form>
+      <log-form @has-log="onSuccessLog"></log-form>
     </my-dialog>
     <my-dialog :is-show="isShowRegDialog"
     @on-close="closeDialog('isShowRegDialog')">
@@ -57,7 +60,8 @@ export default {
     return {
       isShowDialog: false,
       isShowLogDialog: false,
-      isShowRegDialog: false
+      isShowRegDialog: false,
+      username:''
     }
   },
   methods:{
@@ -72,6 +76,10 @@ export default {
     },
     closeDialog(attr){
       this[attr]=false
+    },
+    onSuccessLog(data){
+      this.closeDialog ('isShowLogDialog')
+      this.username = data.username
     }
   }
 }

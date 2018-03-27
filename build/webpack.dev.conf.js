@@ -15,6 +15,7 @@ const portfinder = require('portfinder')
 // const app = express()//请求server
 var appData = require('../db1.json')//加载本地数据文件
 var getNewsList = appData.getNewsList//获取对应的本地数据
+var login = appData.login//获取对应的本地数据
 // var goods = appData.goods
 // var ratings = appData.ratings
 // var apiRoutes = express.Router()
@@ -59,13 +60,13 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           // errno: 0,
           data: getNewsList
         })//接口返回json数据，上面配置的数据seller就赋值给data请求后调用
+      }),
+      app.post('/api/login', (req, res) => {
+        res.json({
+          // errno: 0,
+          data: login
+        })
       })
-      // app.post('/api/goods', (req, res) => {
-      //   res.json({
-      //     errno: 0,
-      //     data: goods
-      //   })
-      // }),
       // app.post('/api/ratings', (req, res) => {
       //   res.json({
       //     errno: 0,
