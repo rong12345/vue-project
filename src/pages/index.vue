@@ -7,7 +7,7 @@
           <h3>{{ pro.title }}</h3>
           <ul>
             <li v-for="item in pro.list">
-              <a href="item.url">{{item.title}}</a>
+              <a :href="item.url">{{item.title}}</a>
               <span v-if="item.hot" class="hot-tag">HOT</span>
             </li>
           </ul>
@@ -48,7 +48,6 @@
 <script type="text/javascript">
   import Vue from 'vue'
   import slideShow from '../components/slideShow'
-
   export default{
     components:{slideShow},
     // created:function(){
@@ -82,22 +81,22 @@
           {
             src: require('../assets/slideShow/pic1.jpg'),
             title: 'title1',
-            href: 'detail/analysis'
+            href: 'detail/count'
           },
           {
             src: require('../assets/slideShow/pic2.jpg'),
             title: 'title2',
-            href: 'detail/count'
+            href: 'detail/forecast'
           },
           {
             src: require('../assets/slideShow/pic3.jpg'),
             title: 'title3',
-            href: 'http://xxx.xxx.com'
+            href: 'detail/analysis'
           },
           {
             src: require('../assets/slideShow/pic4.jpg'),
             title: 'title4',
-            href: 'detail/forecast'
+            href: 'detail/publish'
           }
         ],
         boardList: [
@@ -137,20 +136,20 @@
             list:[
               {
                 title:'数据统计',
-                url:''
+                url:'detail/count'
               },
               {
                 title:'数据预测',
-                url:''
+                url:'detail/forecast'
               },
               {
                 title:'流量分析',
-                url:'',
+                url:'detail/analysis',
                 hot:true
               },
               {
                 title:'广告发布',
-                url:''
+                url:'detail/publish'
               }
             ]
           },
